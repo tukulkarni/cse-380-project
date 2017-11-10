@@ -1,0 +1,4 @@
+# Object files and executables
+*.o 
+# Latex files except .tex
+*.aux *.dvi *.log *.out *.ps *.pdf
