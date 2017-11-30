@@ -7,15 +7,15 @@ EXEC := run
 # Compiler, libraries and flags
 CC := gcc
 CFLAGS := -O0
-LDFLAGS := -lm
-INC := -I../inc/
+INC := -I../inc
+DEBUG := -Wall -Wextra -Wshadow
 
 # Targets 
 all : $(OBJ)
-	$(CC) -o $(EXEC) $(CFLAGS) $^
+	$(CC) -o $(EXEC) $^ $(CFLAGS) $(LIBS)
 
-%.o : %.c
-	$(CC) -c $< $(INC)
+%.o : %.c 
+	$(CC) -c $< $(INC) $(DEBUG)
 
 # Phony targets : always out-of-date
 .PHONY : clean 
