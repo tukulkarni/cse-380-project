@@ -4,8 +4,8 @@
 #include<math.h>
 #include "grvy.h"
 
-// Global constants
-double tstep; // Time step of execution
+// Variables
+
 // Functions
 double eulerfwd(double y0,double dt,double tf,double (*f)(double));
 double dydt(double y);

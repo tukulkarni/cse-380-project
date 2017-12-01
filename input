@@ -2,5 +2,10 @@
 # Input file 
 #####
 
+# Code behavior
+[code]
+Debug_Level = 1
+
 # Runtime parameters
-Time_step = 
+[run]
+Time_step = 1e-4
