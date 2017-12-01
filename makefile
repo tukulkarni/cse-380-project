@@ -1,12 +1,11 @@
 include makefile.in
 
-all :
-	$(MAKE) -C $(SRC_DIR) $(INCDIR) $(LIBDIR) $(LIBS)
-	$(MAKE) -C $(TEST_DIR)
-	$(MAKE) -C $(DOC_DIR)
+run : $(OBJ)
+
+%.o : %.c
+	$(MAKE) -C $(SRC_DIR) // just compiles source code
+		
 	
 .PHONY : clean
 clean : 
 	@$(MAKE) -C $(SRC_DIR) 	clean
-	@$(MAKE) -C $(TEST_DIR) clean
-	@$(MAKE) -C $(DOC_DIR)	clean

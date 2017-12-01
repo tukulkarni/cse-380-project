@@ -14,7 +14,8 @@ DEBUG := -Wall -Wextra -Wshadow
 
 # Targets 
 all : $(OBJ)
-	$(CC) -o $(EXEC) $^ $(CFLAGS) $(LIBS) $(INC) $(LDFLAGS)
+	$(CC) -o $(EXEC) $^ $(CFLAGS) $(INC) -Wl,-rpath,\
+	$(GRVY_LIB_DIR) $(LDFLAGS) $(LIBS)
 
 %.o : %.c 
 	$(CC) -c $< $(DEBUG) $(INC)
