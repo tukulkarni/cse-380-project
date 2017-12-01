@@ -2,3 +2,5 @@
 *.o 
 # Latex files except .tex
 *.aux *.dvi *.log *.out *.ps *.pdf
+# Archives
+*.tar *.tar.gz 

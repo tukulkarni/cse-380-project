@@ -1,9 +1,9 @@
 include makefile.in
 
 all :
-	@$(MAKE) -C $(SRC_DIR)
-	@$(MAKE) -C $(TEST_DIR)
-	@$(MAKE) -C $(DOC_DIR)
+	$(MAKE) -C $(SRC_DIR) $(INCDIR) $(LIBDIR) $(LIBS)
+	$(MAKE) -C $(TEST_DIR)
+	$(MAKE) -C $(DOC_DIR)
 	
 .PHONY : clean
 clean : 

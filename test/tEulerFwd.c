@@ -7,7 +7,6 @@ printf("-------------------------------");
 printf("Running test on Euler Forward\n");
 yf = eulerfwd(1,0.01,2,dydt);
 anal = exp(2);
-
 }
 
 double dydt(double y)

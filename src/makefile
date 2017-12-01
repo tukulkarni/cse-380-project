@@ -1,4 +1,5 @@
 include ../makefile.in
+include ../makefile.tpl.in
 
 # Files
 SRC := $(wildcard *.c)
@@ -7,15 +8,16 @@ EXEC := run
 # Compiler, libraries and flags
 CC := gcc
 CFLAGS := -O0
-INC := -I../inc
+INC := -I../inc -I$(GRVY_INC_DIR)
+LDFLAGS := -L$(GRVY_LIB_DIR)
 DEBUG := -Wall -Wextra -Wshadow
 
 # Targets 
 all : $(OBJ)
-	$(CC) -o $(EXEC) $^ $(CFLAGS) $(LIBS)
+	$(CC) -o $(EXEC) $^ $(CFLAGS) $(LIBS) $(INC) $(LDFLAGS)
 
 %.o : %.c 
-	$(CC) -c $< $(INC) $(DEBUG)
+	$(CC) -c $< $(DEBUG) $(INC)
 
 # Phony targets : always out-of-date
 .PHONY : clean 

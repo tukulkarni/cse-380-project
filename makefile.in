@@ -1,7 +1,7 @@
-ROOT_DIR := $(PWD)
+ROOT_DIR := /home/tuk59/Documents/GradSchool/Fall_17/Tools_and_Techniques/project
 SRC_DIR := $(ROOT_DIR)/src
 DOC_DIR := $(ROOT_DIR)/doc
 INC_DIR := $(ROOT_DIR)/inc
 TEST_DIR := $(ROOT_DIR)/test
-LIBS := -lm
-SRC := $(wildcard src/*.c)
+LIBS := -lm -lgrvy
+SRC := $(wildcard $(SRC_DIR)/*.c)
