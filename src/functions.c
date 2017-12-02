@@ -15,3 +15,25 @@ for(i=0;i<n;i++)
 	}
 return y;
 }
+
+double dydt(double y)
+{
+	double dy;
+	dy = y;
+	return dy;
+}
+
+int gsl_f(double t,const double y[],double f[],void *params)
+{
+	f[0]=y[0]+0*t;
+	return GSL_SUCCESS;
+}
+
+int gsl_dfdy(double t,const double y[],double *dfdy, double dfdt[], void *params)
+{
+	// Set dfdy and dfdt
+	dfdt[0] = 0*t;
+	dfdy[0] = 1.0 + 0*y[0];
+	return GSL_SUCCESS;	
+}
+

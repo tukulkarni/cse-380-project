@@ -1,2 +1,4 @@
 GRVY_INC_DIR := /home/tuk59/Installed/bin/grvy/include
 GRVY_LIB_DIR := /home/tuk59/Installed/bin/grvy/lib
+GSL_LIB_DIR := /home/tuk59/Installed/gsl/lib
+GSL_INC_DIR := /home/tuk59/Installed/gsl/include
