@@ -1,10 +1,16 @@
 #include "grvy.h"
-// Parse variables
+
+/* Parse variables */
 int debuglevel;
+double tstep;
+char *odesys; //Either 'test' or 'main'
+
+/* Variables */
 #define DEBUG 1
 #define STANDARD 0
-double tstep;
-// Parsing routines
-void parse_set();
-void set_def();
-void get_inp();
+#define GRVY_SUCCESS 100
+/* Parsing routines */
+int input_parse();
+void parse_set(); // Set up grvy parsing capabilities
+void set_def();	  // Set the DEFault values
+void get_inp();	  // Get input from input file (parse)

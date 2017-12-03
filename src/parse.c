@@ -4,6 +4,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+
+int input_parse()
+{
+	// High level wrapper for all GRVY wrappers
+	parse_set();
+	set_def();
+	get_inp();
+	return GRVY_SUCCESS;
+}
 void parse_set()
 {
 	int q;
@@ -21,10 +30,12 @@ void set_def()
 	// Set defaluts for code params
 	if(grvy_input_register_int("code/Debug_Level",0))
 		printf("Setting default output level to standard\n");
+	if(grvy_input_register_char("code/odesys","test"))
+		printf("Setting default system to 'test'\n");
 	// Set default values for runtime parameters
 	if(grvy_input_register_double("run/Time_step",1e-2)!=1)
 		printf("Could not register time step default\n");
-
+	
 }
 
 void get_inp()
@@ -37,6 +48,13 @@ void get_inp()
 	}
 	else if(debuglevel)
 		printf("Running in debug mode\n");
+	
+	if(grvy_input_fread_char("code/odesys",&odesys)==0)
+	{
+		grvy_input_register_get_char("code/odesys",&odesys);
+		if(debuglevel)
+			printf("Using default time step = %.3E\n",tstep);
+	}
 	
 	if(grvy_input_fread_double("run/Time_step",&tstep)==0)
 	{
