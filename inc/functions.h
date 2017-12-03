@@ -12,5 +12,7 @@
 // Functions
 double eulerfwd(double y0,double dt,double tf,double (*f)(double));
 double dydt(double y);
-int gsl_f(double t,const double y[],double f[],void *params);
-int gsl_dfdy(double t,const double y[],double *dfdy, double dfdt[], void *params);
+int test_f(double t,const double y[],double f[],void *params);
+int test_dfdy(double t,const double y[],double *dfdy, double dfdt[], void *params);
+int cpvef_f(double t,const double y[],double f[],void *params);
+int cpvef_dfdy(double t,const double y[],double *dfdy, double dfdt[], void *params);
