@@ -1,7 +1,26 @@
+# Code paths
 ROOT_DIR := /home/tuk59/Documents/GradSchool/Fall_17/Tools_and_Techniques/project
 SRC_DIR := $(ROOT_DIR)/src
 DOC_DIR := $(ROOT_DIR)/doc
 INC_DIR := $(ROOT_DIR)/inc
 TEST_DIR := $(ROOT_DIR)/test
-LIBS := -lm -lgrvy -lgsl -lgslcblas
+
+# Third Party libraries
+GRVY_LIB_DIR := /home/tuk59/Installed/bin/grvy/lib
+GSL_LIB_DIR := /home/tuk59/Installed/gsl/lib
+Cunit_LIB_DIR := /use/local/lib
+
+GSL_INC_DIR := /home/tuk59/Installed/gsl/include
+GRVY_INC_DIR := /home/tuk59/Installed/bin/grvy/include
+CUnit_INC_DIR := /usr/local/include
+
+# Compiler, libraries and flags
+CC := gcc
+EXEC := $(ROOT_DIR)/run
+DEBUG := -Wall -Wextra -Wshadow
+CFLAGS := -O0
+INC := -I$(INC_DIR) -I$(GRVY_INC_DIR) -I$(GSL_INC_DIR) -I$(CUnit_INC_DIR)
+LDFLAGS := -L$(GRVY_LIB_DIR) -L$(GSL_LIB_DIR) -L$(CUnit_LIB_DIR)
+LIBS := -lm -lgrvy -lgsl -lgslcblas -lcunit
 SRC := $(wildcard $(SRC_DIR)/*.c)
+

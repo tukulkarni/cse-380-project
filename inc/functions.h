@@ -2,17 +2,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<math.h>
-#include "grvy.h"
+#include "parse.h"
 #include<gsl/gsl_math.h>
 #include<gsl/gsl_odeiv2.h>
 #include<gsl/gsl_errno.h>
 
 // Variables
-
+FILE * outfile;
 // Functions
-double eulerfwd(double y0,double dt,double tf,double (*f)(double));
-double dydt(double y);
-int test_f(double t,const double y[],double f[],void *params);
-int test_dfdy(double t,const double y[],double *dfdy, double dfdt[], void *params);
 int cpvef_f(double t,const double y[],double f[],void *params);
 int cpvef_dfdy(double t,const double y[],double *dfdy, double dfdt[], void *params);
+int print_header();
+void message(int type,char text[]);
+

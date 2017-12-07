@@ -1,5 +1,5 @@
 #include "functions.h"
-/* functions to solve 1st order ODE */
+/* functions as required by GSL ODE driver*/
 int cpvef_f(double t, const double y[], double f[], void *params)
 {
 	/* RHS of ODE for 
@@ -51,3 +51,4 @@ int cpvef_dfdy(double t,const double y[],double *dfdy, double dfdt[], void *para
 	
 	return GSL_SUCCESS;
 }
+
