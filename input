@@ -5,7 +5,7 @@
 # Code behavior
 [code]
 verbosity = 1	# 1 : Debug (Verbose output), 0: Standard
-odesys = 'main'	# or 'main'
+odesys = 'test'	# 'main' or 'test'
 stepper = 'explicit rk4'
 # Runtime parameters
 [run]

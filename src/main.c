@@ -10,12 +10,17 @@
 int main(){
 	char str[100];// Maximum supported length of messages
 	/* Input parsing */
+	grvy_timer_init(" Timing using GRVY ");
+	grvy_timer_begin("main program");
 	input_parse();	// Grvy takes care of error handling
 	// Test which case to run
 	if(strcmp(odesys,"test")==0)
 	{
 		message(0,"Running test case...");	
 		testode();
+		grvy_timer_end("main program");
+		grvy_timer_finalize();
+		grvy_timer_summarize();
 		return 0;
 	} else if(strcmp(odesys,"main")!=0)
 		{
@@ -36,7 +41,7 @@ int main(){
 
 	double t0 = 0;
 	double tf = 10;
-	int nstep = tf/tstep+1;
+	unsigned long int nstep = (int)(tf/tstep);
 	// Initial conditions
 	double y[6] = {0,0,0,20,0,2};
 	sprintf(str, "Initial conditions (x0,y0,z0) = (%.3e,%.3e,%.3e)",
@@ -65,5 +70,8 @@ int main(){
 	}
 	gsl_odeiv2_driver_free(gsl_driver);
 	fclose(outfile);
+	grvy_timer_end("main program");
+	grvy_timer_finalize();
+	grvy_timer_summarize();
 	return 0;
 }
