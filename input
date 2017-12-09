@@ -4,10 +4,10 @@
 
 # Code behavior
 [code]
-verbosity = 1	# 1 : Debug (Verbose output), 0: Standard
+verbosity = 0	# 1 : Debug (Verbose output), 0: Standard
 odesys = 'test'	# 'main' or 'test'
 stepper = 'explicit rk4'
 # Runtime parameters
 [run]
-Time_step = 1e-4
+Time_step = 1e-1
 outfreq = 50	# Output data written after these many time steps
