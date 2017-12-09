@@ -1,4 +1,3 @@
-include ../makefile.in
 include ../makefile.tpl.in
 
 TEST := $(wildcard *.c)

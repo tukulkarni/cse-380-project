@@ -1,4 +1,4 @@
-include ../makefile.in
+include ../makefile.tpl.in
 
 # Files
 OBJ := $(patsubst %.c,%.o,$(SRC))

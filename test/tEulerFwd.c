@@ -1,6 +1,7 @@
 #include "functions.h"
+#include "testode.h"
 /* Test for Euler Forward routine with dy/dt = y */
-void main(){
+void tEulerfwd(){
 double yf,anal;
 
 printf("-------------------------------");
@@ -9,9 +10,3 @@ yf = eulerfwd(1,0.01,2,dydt);
 anal = exp(2);
 }
 
-double dydt(double y)
-{
-double dy;
-dy = y;
-return dy;
-}

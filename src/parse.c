@@ -17,7 +17,7 @@ void parse_set()
 {
 	int q;
 	// Sets up input parsing with grvy
-	q=grvy_input_fopen("input");
+	q=grvy_input_fopen("INPUT");
 	if(q!=1)
 	{
 		grvy_input_fclose();
