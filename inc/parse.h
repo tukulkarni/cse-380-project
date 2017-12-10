@@ -3,11 +3,14 @@
 
 /* Parse variables */
 int verbosity;
-double tstep;
 char *odesys; //Either 'test' or 'main'
-const gsl_odeiv2_step_type * stepper_fun; // Pointer to stepper function
 char *stepper;
+const gsl_odeiv2_step_type * stepper_fun; // Pointer to stepper function
+char *outfilename;
+
+double tstep, tf;
 int outfreq;
+
 /* Variables */
 #define DEBUG 1
 #define STANDARD 0
@@ -15,7 +18,7 @@ int outfreq;
 
 /* Parsing routines */
 int input_parse();
-void parse_set(); // Set up grvy parsing capabilities
-void set_def();	  // Set the DEFault values
-void get_inp();	  // Get input from input file (parse)
-void set_stepper();
+void parse_set();   // Set up grvy parsing capabilities
+void set_def();	    // Set the DEFault values
+void get_inp();	    // Get input from input file (parse)
+void set_stepper(); // Set the correct GSL stepper based on input

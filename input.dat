@@ -1,0 +1,15 @@
+####
+# Input file 
+#####
+
+# Code behavior
+[code]
+verbosity 	= 0	  						# 1 : Debug (Verbose output), 0: Standard
+odesys 		= 'main'	  				# 'main' or 'test'
+stepper 	= 'explicit rk4'
+outfile 	= 'dat/output_exprk4.dat'
+# Runtime parameters
+[run]
+Final_time	= 10
+Time_step 	= 1e-6
+outfreq		= 500	  					# Output data written after these many time steps

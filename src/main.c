@@ -9,16 +9,20 @@
 #include<CUnit/CUnit.h>
 int main(){
 	char msg[100];// Maximum supported length of messages
+	
 	/* Input parsing */
 	grvy_timer_init(" Timing using GRVY ");
-	grvy_timer_begin("main program");
+	grvy_timer_begin("Main program");
+	grvy_timer_begin("Input parsing");
 	input_parse();	// Grvy takes care of error handling
-	// Test which case to run
+	grvy_timer_end("Input parsing");
+
+	/* Test which case to run */
 	if(strcmp(odesys,"test")==0)
 	{
 		message(0,"Running test case...");	
 		testode();
-		grvy_timer_end("main program");
+		grvy_timer_end("Main program");
 		grvy_timer_finalize();
 		grvy_timer_summarize();
 		return 0;
@@ -40,7 +44,6 @@ int main(){
 		(&gsl_sys,stepper_fun,tstep,1e-8,0);
 
 	double t0 = 0;
-	double tf = 10;
 	unsigned long int nstep = (int)(tf/tstep);
 	// Initial conditions
 	double y[6] = {0,0,0,20,0,2};
@@ -66,12 +69,18 @@ int main(){
 				t0,y[0],y[1],y[2]);
 			message(1,msg);
 		}
+		if(ti==0)
+			grvy_timer_begin("GSL integrator");
 		gsl_odeiv2_driver_apply_fixed_step(gsl_driver,&t0,tstep,1,y);
 	}
 	gsl_odeiv2_driver_free(gsl_driver);
 	fclose(outfile);
-	grvy_timer_end("main program");
+	grvy_timer_end("GSL integrator");
+	grvy_timer_end("Main program");
 	grvy_timer_finalize();
+	message(0,"Execution complete..");
+	sprintf(msg,"Output written to %s",outfilename);
+	message(0,msg);
 	grvy_timer_summarize();
 	return 0;
 }

@@ -2,7 +2,7 @@
 
 int print_header()
 {
-	outfile = fopen("dat/output.dat","w+");
+	outfile = fopen(outfilename,"w+");
 	if(outfile==NULL)
 	{
 		printf("Error: Could not open file");

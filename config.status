@@ -546,10 +546,10 @@ AMDEP_TRUE="" ac_aux_dir="."
 for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
-    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
-    "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "config.h") CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
+    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
+    "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
@@ -617,6 +617,8 @@ echo 'BEGIN {' >"$ac_tmp/subs1.awk" &&
 cat >>"$ac_tmp/subs1.awk" <<\_ACAWK &&
 S["am__EXEEXT_FALSE"]=""
 S["am__EXEEXT_TRUE"]="#"
+S["LTLIBOBJS"]=""
+S["LIBOBJS"]=""
 S["EGREP"]="/bin/grep -E"
 S["GREP"]="/bin/grep"
 S["CPP"]="gcc -E"
@@ -643,8 +645,6 @@ S["CPPFLAGS"]=""
 S["LDFLAGS"]=""
 S["CXXFLAGS"]="-g -O2"
 S["CXX"]="g++"
-S["LTLIBOBJS"]=""
-S["LIBOBJS"]=""
 S["AM_BACKSLASH"]="\\"
 S["AM_DEFAULT_VERBOSITY"]="1"
 S["AM_DEFAULT_V"]="$(AM_DEFAULT_VERBOSITY)"
@@ -666,7 +666,7 @@ S["AUTOMAKE"]="${SHELL} /home/tuk59/Documents/GradSchool/Fall_17/Tools_and_Techn
 S["AUTOCONF"]="${SHELL} /home/tuk59/Documents/GradSchool/Fall_17/Tools_and_Techniques/project/missing autoconf"
 S["ACLOCAL"]="${SHELL} /home/tuk59/Documents/GradSchool/Fall_17/Tools_and_Techniques/project/missing aclocal-1.15"
 S["VERSION"]="1.0"
-S["PACKAGE"]="cpvef"
+S["PACKAGE"]="run"
 S["CYGPATH_W"]="echo"
 S["am__isrc"]=""
 S["INSTALL_DATA"]="${INSTALL} -m 644"
@@ -758,7 +758,7 @@ D["PACKAGE_VERSION"]=" \"1.0\""
 D["PACKAGE_STRING"]=" \"CPVEF 1.0\""
 D["PACKAGE_BUGREPORT"]=" \"tukulkarni@utexas.edu\""
 D["PACKAGE_URL"]=" \"\""
-D["PACKAGE"]=" \"cpvef\""
+D["PACKAGE"]=" \"run\""
 D["VERSION"]=" \"1.0\""
 D["HAVE_LIBCUNIT"]=" 1"
 D["HAVE_LIBGSL"]=" 1"

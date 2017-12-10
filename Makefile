@@ -69,10 +69,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/cpvef
-pkgincludedir = $(includedir)/cpvef
-pkglibdir = $(libdir)/cpvef
-pkglibexecdir = $(libexecdir)/cpvef
+pkgdatadir = $(datadir)/run
+pkgincludedir = $(includedir)/run
+pkglibdir = $(libdir)/run
+pkglibexecdir = $(libexecdir)/run
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -236,7 +236,7 @@ LTLIBOBJS =
 MAKEINFO = ${SHELL} /home/tuk59/Documents/GradSchool/Fall_17/Tools_and_Techniques/project/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-PACKAGE = cpvef
+PACKAGE = run
 PACKAGE_BUGREPORT = tukulkarni@utexas.edu
 PACKAGE_NAME = CPVEF
 PACKAGE_STRING = CPVEF 1.0

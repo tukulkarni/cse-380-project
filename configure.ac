@@ -3,10 +3,8 @@
 
 AC_PREREQ([2.69])
 AC_INIT([CPVEF], [1.0], [tukulkarni@utexas.edu])
+AM_INIT_AUTOMAKE(run,1.0)
 AC_CONFIG_SRCDIR([src])
-AM_INIT_AUTOMAKE(cpvef,1.0)
-AC_CONFIG_FILES([src/Makefile])
-AC_OUTPUT(Makefile)
 AM_CONFIG_HEADER(config.h)
 
 # Checks for programs.
@@ -33,4 +31,5 @@ AC_CHECK_HEADERS([stdlib.h string.h])
 # Checks for library functions.
 AC_CHECK_FUNCS([strcasecmp])
 
-AC_OUTPUT
+AC_CONFIG_FILES([src/Makefile])
+AC_OUTPUT(Makefile)
