@@ -11,7 +11,7 @@
 /* #undef HAVE_LIBGRVY */
 
 /* Define to 1 if you have the `gsl' library (-lgsl). */
-#define HAVE_LIBGSL 1
+/* #undef HAVE_LIBGSL */
 
 /* Define to 1 if you have the `gslcblas' library (-lgslcblas). */
 #define HAVE_LIBGSLCBLAS 1
@@ -47,7 +47,7 @@
 #define HAVE_UNISTD_H 1
 
 /* Name of package */
-#define PACKAGE "run"
+#define PACKAGE "cpvef"
 
 /* Define to the address where bug reports for this package should be sent. */
 #define PACKAGE_BUGREPORT "tukulkarni@utexas.edu"

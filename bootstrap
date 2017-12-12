@@ -1,11 +1,2 @@
 #!/bin/bash
-#-------------------------------------------------------
-#
-# bootstrapping utility for autotools 
-#
-# ------------------------------------------------------
-
-cmd="autoreconf -f -i"
-echo "Bootstrapping using $cmd ..."
-
-$cmd
+autoreconf -f -i

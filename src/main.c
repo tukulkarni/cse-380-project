@@ -20,7 +20,7 @@ int main(){
 	/* Test which case to run */
 	if(strcmp(odesys,"test")==0)
 	{
-		message(0,"Running test case...");	
+		message(0,"\nRunning test case...");	
 		testode();
 		grvy_timer_end("Main program");
 		grvy_timer_finalize();
@@ -33,8 +33,8 @@ int main(){
 		}
 	
 	/* Main CPEVF code */
-	message(0,"Running calculations for Charged Particle in Vertical Electric Field");
-	sprintf(msg," Time step is %.3e",tstep);
+	message(0,"\nRunning calculations for Charged Particle in Vertical Electric Field");
+	sprintf(msg,"--> Time step is %.3e",tstep);
 	message(0,msg);
 	
 	double params[2];
@@ -47,13 +47,13 @@ int main(){
 	unsigned long int nstep = (int)(tf/tstep);
 	// Initial conditions
 	double y[6] = {0,0,0,20,0,2};
-	sprintf(msg, "Initial conditions (x0,y0,z0) = (%.3e,%.3e,%.3e)",
+	sprintf(msg, "--> Initial conditions (x0,y0,z0) = (%.3e,%.3e,%.3e)",
 				y[0],y[1],y[2]);
 	message(0,msg);
-	sprintf(msg, "                   (u0,v0,w0) = (%.3e,%.3e,%.3e)",
+	sprintf(msg, "                       (u0,v0,w0) = (%.3e,%.3e,%.3e)",
 				y[3],y[4],y[5]);
 	message(0,msg); 
-	message(1,"----- Output of the program ---- ");
+	message(1,"\n#### Output of the program #### ");
 	sprintf(msg," %9s :  %11s   %11s   %11s","time","x(m)","y(m)","z(m)"); 
 	message(1,msg);
 	// Initial outfile header
@@ -81,6 +81,7 @@ int main(){
 	message(0,"Execution complete..");
 	sprintf(msg,"Output written to %s",outfilename);
 	message(0,msg);
+	message(0,"\n#### GRVY TIMING REPORT ####");
 	grvy_timer_summarize();
 	return 0;
 }

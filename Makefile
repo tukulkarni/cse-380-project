@@ -69,10 +69,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/run
-pkgincludedir = $(includedir)/run
-pkglibdir = $(libdir)/run
-pkglibexecdir = $(libexecdir)/run
+pkgdatadir = $(datadir)/cpvef
+pkgincludedir = $(includedir)/cpvef
+pkglibdir = $(libdir)/cpvef
+pkglibexecdir = $(libexecdir)/cpvef
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -87,7 +87,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/gsl.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
@@ -224,19 +225,22 @@ ECHO_T =
 EGREP = /bin/grep -E
 EXEEXT = 
 GREP = /bin/grep
+GSL_CFLAGS = -I/usr/local/include
+GSL_CONFIG = /usr/local/bin/gsl-config
+GSL_LIBS = -L/usr/local/lib -lgsl -lgslcblas -lm
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LDFLAGS = 
+LDFLAGS = $(GSL_LDFLAGS)
 LIBOBJS = 
-LIBS = -lm -lgslcblas -lgsl -lcunit 
+LIBS = $(GSL_LIBS)
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/tuk59/Documents/GradSchool/Fall_17/Tools_and_Techniques/project/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 OBJEXT = o
-PACKAGE = run
+PACKAGE = cpvef
 PACKAGE_BUGREPORT = tukulkarni@utexas.edu
 PACKAGE_NAME = CPVEF
 PACKAGE_STRING = CPVEF 1.0
@@ -293,8 +297,9 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = foreign
-SUBDIRS = src test
-EXTRA_DIST = CHANGES AUTHORS COPYING LICENSE 
+SUBDIRS = src 
+EXTRA_DIST = CHANGES AUTHORS COPYING LICENSE
+AM_CPPFLAGS = $(GSL_CFLAGS)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 

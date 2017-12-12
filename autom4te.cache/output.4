@@ -2201,6 +2201,9 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
+
+
+
 am__api_version='1.15'
 
 ac_aux_dir=
@@ -2715,9 +2718,8 @@ fi
 
 
 # Define the identity of the package.
-
- PACKAGE=run
- VERSION=1.0
+ PACKAGE='cpvef'
+ VERSION='1.0'
 
 
 cat >>confdefs.h <<_ACEOF
@@ -2809,7 +2811,6 @@ END
     as_fn_error $? "Your 'rm' program is bad, sorry." "$LINENO" 5
   fi
 fi
-
 
 ac_config_headers="$ac_config_headers config.h"
 
@@ -4241,6 +4242,8 @@ fi
 
 
 # Checks for libraries.
+AX_PATH_GSL(1.15,,echo "Could not find GSL")
+
 # FIXME: Replace `main' with a function in `-lcunit':
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lcunit" >&5
@@ -4323,9 +4326,9 @@ _ACEOF
 fi
 
 # FIXME: Replace `main' with a function in `-lgsl':
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lgsl" >&5
-$as_echo_n "checking for main in -lgsl... " >&6; }
-if ${ac_cv_lib_gsl_main+:} false; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for gsl_odeiv2 in -lgsl" >&5
+$as_echo_n "checking for gsl_odeiv2 in -lgsl... " >&6; }
+if ${ac_cv_lib_gsl_gsl_odeiv2+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
@@ -4333,27 +4336,33 @@ LIBS="-lgsl  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
-
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char gsl_odeiv2 ();
 int
 main ()
 {
-return main ();
+return gsl_odeiv2 ();
   ;
   return 0;
 }
 _ACEOF
 if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_gsl_main=yes
+  ac_cv_lib_gsl_gsl_odeiv2=yes
 else
-  ac_cv_lib_gsl_main=no
+  ac_cv_lib_gsl_gsl_odeiv2=no
 fi
 rm -f core conftest.err conftest.$ac_objext \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gsl_main" >&5
-$as_echo "$ac_cv_lib_gsl_main" >&6; }
-if test "x$ac_cv_lib_gsl_main" = xyes; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gsl_gsl_odeiv2" >&5
+$as_echo "$ac_cv_lib_gsl_gsl_odeiv2" >&6; }
+if test "x$ac_cv_lib_gsl_gsl_odeiv2" = xyes; then :
   cat >>confdefs.h <<_ACEOF
 @%:@define HAVE_LIBGSL 1
 _ACEOF
@@ -4362,7 +4371,6 @@ _ACEOF
 
 fi
 
-# FIXME: Replace `main' with a function in `-lgslcblas':
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lgslcblas" >&5
 $as_echo_n "checking for main in -lgslcblas... " >&6; }
 if ${ac_cv_lib_gslcblas_main+:} false; then :

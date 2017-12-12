@@ -7,6 +7,7 @@ char *odesys; //Either 'test' or 'main'
 char *stepper;
 const gsl_odeiv2_step_type * stepper_fun; // Pointer to stepper function
 char *outfilename;
+int verify;
 
 double tstep, tf;
 int outfreq;

@@ -32,69 +32,59 @@ void set_def()
 	grvy_input_register_char("code/odesys","test");
 	grvy_input_register_char("code/stepper","explicit rk4");
 	grvy_input_register_char("code/outfile","dat/output.dat");
+	grvy_input_register_int("code/verify",0);
+	
 	// Set default values for runtime parameters
-	grvy_input_register_double("run/Time_step",1e-2);
+	grvy_input_register_double("run/hmax",1e-2);
 	grvy_input_register_int("run/outfreq",1);
 	grvy_input_register_double("run/Final_time",10);
 
-	// If debug mode is set, print the default values
-	message(1,"------ DEFAULT VALUES FOR GRVY PARAMETERS ------");
-	message(1,"	\tVerbosity        : 1 of 1\n");
-	message(1,"	\tSystem of eqns   : 'test'\n");
-	message(1,"	\tTime step        : 0.01\n");
-	message(1,"	\tOutput frequency : 1 (every time step)\n");
-	message(1,"------------------------------------------------");
+	// Print the default values
+	message(0,"\nDefault input parameters are as following :");
+	message(0,"#### DEFAULT VALUES FOR INPUT PARAMETERS ####");
+	message(0,"  Verbosity          :   1 of 1");
+	message(0,"  System of eqns     :   'test'");
+	message(0,"  Time step          :   0.01");
+	message(0,"  Output frequency   :   1 (every time step)");
+	message(0,"  Verification mode  :   OFF");
+	message(0,"  Final time         :   10 sec");
+	message(0,"  Output file        :   dat/output.dat");
+	message(0,"############################################");
 }
 
 void get_inp()
 {
-	// Verbosity Level
+	/* Code behavior */
+	// C1.Verbosity Level
     if(grvy_input_fread_int("code/verbosity",&verbosity)==0)
-	{
 		grvy_input_register_get_int("code/verbosity",&verbosity);
-		printf("Verbosity level not set, running verbose mode\n");
-	}
 	message(1,"Running in debug mode");
-	
-	// ODE System (main or test)
+	// C2.ODE System (main or test)
 	if(grvy_input_fread_char("code/odesys",&odesys)==0)
-	{
 		grvy_input_register_get_char("code/odesys",&odesys);
-	}
-
-	// Stepper function : Default is explicit RK4
+	// C3.Stepper function : Default is explicit RK4
 	if(grvy_input_fread_char("code/stepper",&stepper)==0)
-	{
 		grvy_input_register_get_char("code/stepper",&stepper);
-		message(1,"Using default stepper: RK4");
-	}
 	set_stepper();
-	// Time step 
-	if(grvy_input_fread_double("run/Time_step",&tstep)==0)
-	{
-		grvy_input_register_get_double("run/Time_step",&tstep);
-		message(1,"Using default time step = 0.01");
-	}
-	// Output frequency
-	if(grvy_input_fread_int("run/outfreq",&outfreq)==0)
-	{
-		grvy_input_register_get_int("run/outfreq",&outfreq);
-		message(1,"Using default value of outfreq = 1\n");
-	}
-	// Output file
+	// C4.Output file
 	if(grvy_input_fread_char("code/outfile",&outfilename)==0)
-	{
 		grvy_input_register_get_char("code/outfile",&outfilename);
-		message(1,"Using default output file 'dat/output.dat'");
-	}
-
-	// Final time
-	if(grvy_input_fread_double("run/Final_time",&tf)==0)
-	{
-		grvy_input_register_get_double("run/Final_time",&tf);
-		message(1,"Using default final time = 10");
-	}
+	// C5.Verification mode
+	if(grvy_input_fread_int("code/verification",&verify)==0)
+		grvy_input_register_get_int("code/verification",&verify);
 	
+	/* Runtime parameters */
+	// R1.Time step 
+	if(grvy_input_fread_double("run/hmax",&tstep)==0)
+		grvy_input_register_get_double("run/hmax",&tstep);
+	// R2.Output frequency
+	if(grvy_input_fread_int("run/outfreq",&outfreq)==0)
+		grvy_input_register_get_int("run/outfreq",&outfreq);
+	// R3.Final time
+	if(grvy_input_fread_double("run/Final_time",&tf)==0)
+		grvy_input_register_get_double("run/Final_time",&tf);
+
+
     grvy_input_fclose();
 }
 
