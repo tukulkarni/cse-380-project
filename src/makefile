@@ -1,4 +1,4 @@
-include ../makefile.tpl.in
+include ../makefile.defs
 
 # Files
 OBJ := $(patsubst %.c,%.o,$(SRC))
@@ -10,10 +10,10 @@ all : $(OBJ)
 	$(LDFLAGS) $(LIBS)
 
 %.o : %.c 
-	$(CC) -c $< $(DEBUG) $(INC)
+	$(CC) -c $< $(DEBUG) $(INC) $(LIBS)
 
 coverage : $(SRC)
-	gcc --coverage $^ $(DEBUG) $(INC) -Wl,-rpath,\
+	@gcc --coverage $^ $(DEBUG) $(INC) -Wl,-rpath,\
 	$(GRVY_LIB_DIR),-rpath,$(GSL_LIB_DIR) \
 	$(LDFLAGS) $(LIBS)
 
@@ -21,4 +21,4 @@ coverage : $(SRC)
 .PHONY : clean
 clean : 
 	rm -f *.o ~* *~ *.swp $(EXEC)
-	rm -f *.gcno *.gcda *.gcov
+	rm -f *.gcno *.gcda *.gcov lcov*

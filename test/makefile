@@ -1,12 +1,14 @@
-include ../makefile.tpl.in
+include ../makefile.defs
 
-TEST := $(wildcard *.c)
-INC := -I../inc -I$(GRVY_INC_DIR)
-LDLIBS := -L$(GRVY_LIB_DIR)
+TESTSRC := testparse.c
+TESTOBJ :=	$(patsubst %.c,%.o,$(TESTSRC))
 
-all : $(TEST) $(SRC)
-	echo $(SRC)
-	gcc -o testsuite $^ $(INC) $(LIBS) $(LDLIBS)
+all : $(TESTOBJ)
+	gcc -o testsuite $^ $(INC) $(LIBS) $(LDFLAGS) $(LIBS) \
+	-Wl,-rpath,$(GRVY_LIB_DIR),-rpath,$(CUnit_LIB_DIR)
+
+%.o : %.c
+	gcc -c $< $(INC) $(LIBS) $(LDFLAGS) $(DEBUG)
 .PHONY : clean
 clean : 
 	rm -f *.o 

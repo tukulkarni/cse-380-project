@@ -4,13 +4,13 @@
 
 # Code behavior
 [code]
-verbosity 	= 0	  						# 1 : Debug (Verbose output), 0: Standard
-odesys 		= 'main'	  				# 'main' or 'test'
+verbosity 	= 1	  	 # 0 : No output,  1: Standard, 2: Verbose (debug)
+odesys 		= 'test' # 'main' or 'test'
 stepper 	= 'explicit rk4'
 outfile 	= 'dat/output_exprk4.dat'
 verification = 1
 # Runtime parameters
 [run]
 Final_time	= 10
-hmax	 	= 1e-6						# In verification mode, two decades up and down are investigated
-outfreq		= 500	  					# Output data written after these many time steps
+hmax	 	= 1e-4	# In verification mode, two decades up and down are investigated
+outfreq		= 500	# Output data written after these many time steps

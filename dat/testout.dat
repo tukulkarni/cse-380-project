@@ -1,5 +1,5 @@
 ## Output of 1st order ODE solution
-# ODE : dy/dt = y, y(0) = 1
+# ODE : dy/dt = cos(y), y(0) = 0
 # Analytic solution : y(t) = exp(t)
 # ODE integrated from t = 0 to t = 2
 # Convergence analysis for Euler Forward and GSL's Implicit RK1

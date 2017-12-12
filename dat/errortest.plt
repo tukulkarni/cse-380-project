@@ -1,6 +1,6 @@
 #!/bin/bash
 set term post enh eps color font "Times,24" dash
-datafile = 'testode.dat'
+datafile = 'testout.dat'
 outfile  = 'testode.eps'
 set out outfile
 

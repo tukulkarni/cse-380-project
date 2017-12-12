@@ -11,7 +11,8 @@ int print_header()
 	
 	// Print header
 	fprintf(outfile,"###\n");
-	fprintf(outfile,"# Charged Particle in Vertical Electric Field \n");	fprintf(outfile,"#-------- Runtime parameters ----#\n");
+	fprintf(outfile,"# Charged Particle in Vertical Electric Field \n");	
+	fprintf(outfile,"#-------- Runtime parameters ----#\n");
 	fprintf(outfile,"# Solver used : %s\n",stepper);
 	fprintf(outfile,"# Time step : %f\n",tstep);
 	fprintf(outfile,"#--------------------------------#\n");

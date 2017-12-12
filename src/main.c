@@ -1,12 +1,7 @@
-#include<stdio.h>
-#include<math.h>
-#include<string.h>
 #include"functions.h"
 #include"testode.h"
-#include"parse.h"
-#include<gsl/gsl_odeiv2.h>
-#include<gsl/gsl_errno.h>
 #include<CUnit/CUnit.h>
+
 int main(){
 	char msg[100];// Maximum supported length of messages
 	

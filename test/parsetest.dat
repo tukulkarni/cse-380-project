@@ -1,0 +1,13 @@
+# Input file for testing parsing capabilities
+
+free = 'Free parameter'
+
+[test1]
+integer1 = 100			# XPASS
+integer2 = 100000		# XFAIL : out of range
+string1 = 'some path'
+string2 = 'parameter'
+
+[test2]
+float1 = 			# Unassigned, to test default settings
+
