@@ -5,8 +5,8 @@
 # Code behavior
 [code]
 verbosity 	= 1	  	 # 0 : No output,  1: Standard, 2: Verbose (debug)
-odesys 		= 'test' # 'main' or 'test'
-stepper 	= 'explicit rk4'
+odesys 		= 'main' # 'main' or 'test'
+stepper 	= 'explicit rk2'
 outfile 	= 'dat/output_exprk4.dat'
 verification = 1
 # Runtime parameters

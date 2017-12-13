@@ -6,16 +6,21 @@ exec :
 all : exec test doc
 
 check :
+	@$(MAKE) -C $(TEST_DIR)
+	@test/testsuite
 
 coverage :
-	$(MAKE) -C $(SRC_DIR) coverage
+	@$(MAKE) -C $(SRC_DIR) coverage
 	@src/a.out > /dev/null
 	@rm src/a.out
-	@echo 'Coverage target built, check source directory'
+	@echo ' ----------------------------------------------------'
+	@echo ' ------------ Coverage statistics -------------------'
+	@gcov $(SRC_DIR)/*.c
 
 doc :		
 	
 .PHONY : clean
 clean : 
 	@$(MAKE) -C $(SRC_DIR) 	clean
-	@rm -f $(EXEC)
+	@$(MAKE) -C $(TEST_DIR) clean
+	@rm -f $(EXEC) *.gcov

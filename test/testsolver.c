@@ -1,110 +1,59 @@
 #include "testsuite.h"
-
 void testBE()
 {
-	// Test GSL solver RK1-imp convergence
-	double anal = exp(2);
-	double h[6] = {1e-2,1e-3,1e-4,1e-5,1e-6,1e-7};
-	double logh[6] = {-2,-3,-4,-5,-6,-7};
-	double err[6];
-	double y[1];
-	double nsteps;
-
-	const gsl_odeiv2_step_type * GSLstepper = gsl_odeiv2_step_rk1imp;
-	double order = 1;
-	double TOL = 0.2;
-	// Set up the GSL system
-	gsl_odeiv2_system gsl_sys = {test_f,test_dfdy,1,(void *) NULL};
-
-	gsl_odeiv2_driver * gsl_driver = gsl_odeiv2_driver_alloc_y_new
-			(&gsl_sys,GSLstepper,h[0],0.1,0);
-	for(int i=0;i<6;i++)
-	{
-		y[0] = 1;
-		// Using gsl library 
-		double t0 = 0; 
-		nsteps = (int)(2/h[i]);
-		gsl_odeiv2_driver_reset(gsl_driver);
-		gsl_odeiv2_driver_apply_fixed_step(gsl_driver,&t0,h[i],nsteps,y);
-		err[i] = log(y[0]-anal);
-	}
-	gsl_odeiv2_driver_free(gsl_driver);
-	// Check if the order of convergence is correct
-	double slope = linreg(logh,err,6);
-	printf("Test Backward Euler gave slope = %f\n",slope);
-	CU_ASSERT_DOUBLE_EQUAL(slope,order,TOL);
+	double h[5] = {1e-1,1e-2,1e-3,1e-4,1e-5};
+	double slope = testsolver(gsl_odeiv2_step_rk1imp,h);
+	printf(" slope = %f ---> ",slope);
+	CU_ASSERT_DOUBLE_EQUAL(slope,1,0.1);
 }
 
 void testRK2()
 {
-	// Test GSL solver RK1-imp convergence
-	double anal = exp(2);
-	double h[6] = {1e-2,1e-3,1e-4,1e-5,1e-6,1e-7};
-	double logh[6] = {-2,-3,-4,-5,-6,-7};
-	double err[6];
-	double y[1];
-	double nsteps;
-
-	const gsl_odeiv2_step_type * GSLstepper = gsl_odeiv2_step_rk2;
-	double order = 2.0;
-	double TOL = 0.2;
-	// Set up the GSL system
-	gsl_odeiv2_system gsl_sys = {test_f,test_dfdy,1,(void *) NULL};
-
-	gsl_odeiv2_driver * gsl_driver = gsl_odeiv2_driver_alloc_y_new
-			(&gsl_sys,GSLstepper,h[0],0.1,0);
-	for(int i=0;i<6;i++)
-	{
-		y[0] = 1;
-		// Using gsl library 
-		double t0 = 0; 
-		nsteps = (int)(2/h[i]);
-		gsl_odeiv2_driver_reset(gsl_driver);
-		gsl_odeiv2_driver_apply_fixed_step(gsl_driver,&t0,h[i],nsteps,y);
-		err[i] = log(y[0]-anal);
-	}
-	gsl_odeiv2_driver_free(gsl_driver);
-	// Check if the order of convergence is correct
-	double slope = linreg(logh,err,6); 
-	printf("Test RK2 gave slope = %f\n",slope);
-	CU_ASSERT_DOUBLE_EQUAL(slope,order,TOL);
+	double h[5] = {1e-1,5e-2,1e-2,5e-3,1e-3};
+	double slope = testsolver(gsl_odeiv2_step_rk2,h);
+	printf(" slope = %f ---> ",slope);
+	CU_ASSERT_DOUBLE_EQUAL(slope,3,0.2);
 }
 
 void testRK4()
 {
+	double h[5] = {1e-1,5e-2,1e-2,5e-3,2e-3};
+	double slope = testsolver(gsl_odeiv2_step_rk4,h);
+	printf(" slope = %f ---> ",slope);
+	CU_ASSERT_DOUBLE_EQUAL(slope,4,0.2);
+}
+
+double testsolver(const gsl_odeiv2_step_type * GSLstepper, double h[5])
+{
 	// Test GSL solver RK1-imp convergence
-	double anal = exp(2);
-	double h[6] = {1e-2,1e-3,1e-4,1e-5,1e-6,1e-7};
-	double logh[6] = {-2,-3,-4,-5,-6,-7};
-	double err[6];
+	double logh[5];
+	double err[5];
 	double y[1];
 	double nsteps;
-
-	const gsl_odeiv2_step_type * GSLstepper = gsl_odeiv2_step_rk4;
-	double order = 4.0;
-	double TOL = 0.2;
+	double anal = exp(2);
+	double t0,slope; 
+		
 	// Set up the GSL system
 	gsl_odeiv2_system gsl_sys = {test_f,test_dfdy,1,(void *) NULL};
 
 	gsl_odeiv2_driver * gsl_driver = gsl_odeiv2_driver_alloc_y_new
 			(&gsl_sys,GSLstepper,h[0],0.1,0);
-	for(int i=0;i<6;i++)
+	for(int i=0;i<5;i++)
 	{
 		y[0] = 1;
+		t0 = 0;
 		// Using gsl library 
-		double t0 = 0; 
 		nsteps = (int)(2/h[i]);
+		logh[i] = log10(h[i]);
 		gsl_odeiv2_driver_reset(gsl_driver);
 		gsl_odeiv2_driver_apply_fixed_step(gsl_driver,&t0,h[i],nsteps,y);
-		err[i] = log(abs(y[0]-anal));
+		err[i] = log10(fabs(y[0]-anal));
 	}
 	gsl_odeiv2_driver_free(gsl_driver);
 	// Check if the order of convergence is correct
-	double slope = linreg(logh,err,6); 
-	printf("Test RK4 gave slope = %f\n",slope);
-	CU_ASSERT_DOUBLE_EQUAL(slope,order,TOL);
+	slope = linreg(logh,err,5);
+	return slope;
 }
-
 
 double linreg(const double x[], const double y[],int n)
 {
@@ -130,7 +79,5 @@ double linreg(const double x[], const double y[],int n)
     }
 
     slope = (n * sumxy  -  sumx * sumy) / denom;
-	printf("Slope = %f\n",denom);
     return slope; 
 }
-

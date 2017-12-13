@@ -33,7 +33,7 @@ int testode()
 	// Set up the GSL system
 	gsl_odeiv2_system gsl_sys = {test_f,test_dfdy,1,(void *) NULL};
 	gsl_odeiv2_driver * gsl_driver = gsl_odeiv2_driver_alloc_y_new
-			(&gsl_sys,gsl_odeiv2_step_rk1imp,h,0.1,0);
+			(&gsl_sys,stepper_fun,h,0.1,0);
 	do
 	{
 		y[0] = 1;
