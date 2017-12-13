@@ -3,8 +3,8 @@
 free = 'Free parameter'
 
 [test1]
-integer1 = 100			# XPASS
-integer2 = 100000		# XFAIL : out of range
+integer1 = 100				# XPASS
+integer2 = 500000000		# XFAIL : out of range
 string1 = 'some path'
 string2 = 'parameter'
 
