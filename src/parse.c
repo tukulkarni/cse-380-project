@@ -92,19 +92,30 @@ void set_stepper()
 {
 
 	char msg[100];
-	if(strcasecmp(stepper,"explicit rk4"))
+	char stepper_str[22];
+	if(strcasecmp(stepper,"explicit rk4")==0)
+	{
 		stepper_fun = gsl_odeiv2_step_rk4;
-	else if(strcasecmp(stepper,"explicit rk23"))
-			stepper_fun = gsl_odeiv2_step_rk2;
-	else if(strcasecmp(stepper,"backward euler"))
-			stepper_fun = gsl_odeiv2_step_rk1imp;
-	else if(strcasecmp(stepper,"Runge Kutta Fehlenberg"))
-			stepper_fun = gsl_odeiv2_step_rkf45;
+		sprintf(stepper_str,"Explicit RK4");
+	}
+
+	else if(strcasecmp(stepper,"explicit rk23")==0)
+	{	
+		stepper_fun = gsl_odeiv2_step_rk2;
+		sprintf(stepper_str,"Explicit RK23");
+	}
+	else if(strcasecmp(stepper,"backward euler")==0)
+	{
+		stepper_fun = gsl_odeiv2_step_rk1imp;
+		sprintf(stepper_str,"Backward Euler");
+	}
 	else
 		{
 			stepper_fun = gsl_odeiv2_step_rk4; //Default stepper
+			sprintf(stepper_str,"Explicit RK4");
 			printf(" Unknown stepper option, using RK4\n");
 		}
-	sprintf(msg,"Using the stepper %s\n",stepper);
-	message(1,msg);
+
+	sprintf(msg,"Using the stepper %s\n",stepper_str);
+	message(0,msg);
 }

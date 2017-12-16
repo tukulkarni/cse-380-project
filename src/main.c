@@ -36,7 +36,7 @@ int main(){
 	params[0] = 5; params[1] = 5;
 	gsl_odeiv2_system gsl_sys = {cpvef_f,cpvef_dfdy,6,&params};
 	gsl_odeiv2_driver * gsl_driver = gsl_odeiv2_driver_alloc_y_new
-		(&gsl_sys,stepper_fun,tstep,1e-8,0);
+		(&gsl_sys,stepper_fun,tstep,1e-1,0);
 
 	double t0 = 0;
 	unsigned long int nstep = (int)(tf/tstep);

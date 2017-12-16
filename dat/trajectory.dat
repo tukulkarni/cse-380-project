@@ -1,7 +1,7 @@
 ###
 # Charged Particle in Vertical Electric Field 
 #-------- Runtime parameters ----#
-# Solver used : explicit rk2
+# Solver used : explicit rk4
 # Time step : 0.000100
 #--------------------------------#
 #    t      	     x      	     y      	     z      	     u      	     v      	     w      

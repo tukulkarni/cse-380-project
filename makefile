@@ -3,7 +3,7 @@ include makefile.defs
 exec :
 	$(MAKE) -C $(SRC_DIR)
 
-all : exec test doc
+all : exec check
 
 check :
 	@$(MAKE) -C $(TEST_DIR)
@@ -15,9 +15,7 @@ coverage :
 	@rm src/a.out
 	@echo ' ----------------------------------------------------'
 	@echo ' ------------ Coverage statistics -------------------'
-	@gcov $(SRC_DIR)/*.c
-
-doc :		
+	@gcov $(SRC_DIR)/*.c		
 	
 .PHONY : clean
 clean : 

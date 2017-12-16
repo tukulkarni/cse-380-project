@@ -1,0 +1,107 @@
+########################################################################
+#		CHARGED PARTICLE MOTION IN VERTICAL ELECTRIC FIELD			   #
+#	CSE 380 : TOOLS AND TECHNIQUES IN COMPUTATIONAL ENGINEERING        #
+#					FALL 2017 FINAL PROJECT							   #
+#					AUTHOR : TEJAS KULKARNI							   #
+#				  SUBMITTED ON : DEC 15,2017						   #
+########################################################################
+This file contains all the necessary documentation required to run the 
+code for charged particle motion. Read through appropriate sections as 
+required.															    
+																	    	
+INDEX																    	
+|--> Third Party Libraries : 										    		
+|		Contains information on which third party libraries are used,   
+|		versions required and changes to make in the Makefile for	    
+|		linking them correctly with the code.						    
+|																	    					
+|--> Build System :													    					
+|		Description about makefile and its targets. Information on	    					
+|		how to run testsuite, check and coverage targets			    			
+|																	    					
+|--> Input file :													    		
+|		Contains the expected format and description of parameters in   
+|		the input file. 											    					
+|																	    		
+|--> Post-processing :												    		
+|		Includes information about gnuplot scripts and how to run them  							
+|		to produce necessary plots.									    			
+|______________________________________________________________________ 	
+
+1. THIRD PARTY LIBRARIES
+	
+	o This code uses the folllowing third party libraries:
+		1. GSL	 : The latest release version as of Dec 2017
+		2. GRVY  : The latest release version as on Dec 2017
+		3. CUnit : Code was originally written for version 2.1.3, 
+					but earlier	versions may work fine.
+	
+	o User needs to provide paths to all these libraries in 
+	  makefile.defs in the root directory. Specifically, the variables 
+	  GSL_INC_DIR,GSL_LIB_DIR, and similar for GRVY and CUnit must be 
+	  set appropriately.
+
+	o Code was originially compiled with gcc, may work with icc as well 
+		(not tested).
+
+2. BUILD SYSTEM
+	
+	o Make build system is used with hierarchical structure. Default 
+	  target is 'exec', which creates the executable. Hence simply type 
+	  'make' to generate an executable named 'run' in the root dir.
+	  Description of targets is given below
+
+	1. exec  : Creates the executable 'run' by compiling all the source 
+			   code and linking required libraries. 
+	2. check : Creates and runs the testsuite in the directory test/. 
+			   Outputs the test suite statistics in stdout
+	3. coverage : Compiles the code with --coverage flag for src/ files,
+				  runs the executable to generate gcov supported files, 
+				  and runs gcov in the root directory. All the *.c.gcov 
+				  files are thus created in the root directory which 
+				  can be viewed.
+	4. clean : Phony target, cleans src/ test/ and the root directory
+	5. all : Runs exec and check. 
+
+3. INPUT FILE
+
+	o Description for Code behavior 
+	C1. verbosity : integer level from 0-2. 0 is the no output option, 
+					1 is standard output and 2 is debug or verbose 
+					level output.
+	C2. odesys 	: character sting of 4 characters. It should be set to 
+				  either 'main' for the charged particle motion or 
+				  'test' for test ODE
+	C3. stepper : Case insensitive string, need to be one of 
+				  'backward euler', 'explicit rk4','explicit rk23', 
+				  the default being RK4
+	C4. outfile	: Set the path of output file. e.g. dat/output.dat
+	C5. verification : integer (0 or 1) that sets or unsets the 
+					   verification mode
+
+	o Description for Runtime parameters
+	R1. Final_time : Final time at which the stepper should 
+					 stop execution (in sec)
+	R2. hmax 	   : Step size to be taken by the GSL solver. 
+					 Adaptive control is  turned off so this is 
+					 precisely the step size h.
+	R3. outfreq    : Write to the output file every outfreq number 
+					 of steps. Handy when the time step is really 
+					 small to avoid huge output files
+
+4. POST PROCESSING WITH GNUPLOT
+
+	o Gnuplot scripts are included in the dat/ folder, and the 
+		program output paths must be set to this folder as well.
+
+	1. convergence.plt : Plots convergence log-log plots for the 
+						 test ODE, based on input files datafile1-3 
+						 specified at the top of the script. Change 
+						 the paths accordingly.
+	2. trajectory.plt : Plots the particle trajectory in 3D using splot
+						input file path must be set correctly in the 
+						'input'	variable. script creates trajectory.eps
+						and opens it.
+	3. errortest.plt : Compares the convergence rates of user's Euler 
+						forward solver with GSL's Euler backward solver.
+						input path must be set in datafile and output is 						'testode.eps'

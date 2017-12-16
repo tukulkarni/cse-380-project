@@ -3,7 +3,6 @@
 #include"parse.h"
 #include<math.h>
 #include<stdio.h>
-#include<CUnit/CUnit.h>
 
 int testode()
 {
@@ -21,7 +20,7 @@ int testode()
 	unsigned long int nsteps;
 
 	// Set up file I/O for results
-	FILE * testfile = fopen("dat/testout.dat","w");
+	FILE * testfile = fopen(outfilename,"w");
 	fprintf(testfile,"## Output of 1st order ODE solution\n");
 	fprintf(testfile,"# ODE : dy/dt = cos(y), y(0) = 0\n");
 	fprintf(testfile,"# Analytic solution : y(t) = exp(t)\n");
@@ -29,7 +28,8 @@ int testode()
 	fprintf(testfile,"# Convergence analysis for Euler Forward and GSL's Implicit RK1\n");
 	fprintf(testfile,"%-10s\t%-10s\t%-10s\t%-10s\t%-10s%-10s\n","#   dt"," Analytic"," Numerical",
 				"     GSL","    E_num","    E_GSL");
-	message(0,"Writing the output of error analysis to dat/testode.dat");
+	sprintf(msg,"Writing the output of error analysis to %s",outfilename);
+	message(0,msg);	
 	// Set up the GSL system
 	gsl_odeiv2_system gsl_sys = {test_f,test_dfdy,1,(void *) NULL};
 	gsl_odeiv2_driver * gsl_driver = gsl_odeiv2_driver_alloc_y_new
