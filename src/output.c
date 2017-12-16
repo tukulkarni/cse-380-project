@@ -1,5 +1,4 @@
 #include "functions.h"
-
 int print_header()
 {
 	outfile = fopen(outfilename,"w+");

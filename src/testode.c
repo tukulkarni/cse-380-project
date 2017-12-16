@@ -1,9 +1,4 @@
-#include"functions.h"
 #include"testode.h"
-#include"parse.h"
-#include<math.h>
-#include<stdio.h>
-
 int testode()
 {
 	// Test GSL and user implementation of Euler forward
@@ -29,7 +24,7 @@ int testode()
 	fprintf(testfile,"%-10s\t%-10s\t%-10s\t%-10s\t%-10s%-10s\n","#   dt"," Analytic"," Numerical",
 				"     GSL","    E_num","    E_GSL");
 	sprintf(msg,"Writing the output of error analysis to %s",outfilename);
-	message(0,msg);	
+	message(1,msg);	
 	// Set up the GSL system
 	gsl_odeiv2_system gsl_sys = {test_f,test_dfdy,1,(void *) NULL};
 	gsl_odeiv2_driver * gsl_driver = gsl_odeiv2_driver_alloc_y_new
@@ -40,7 +35,7 @@ int testode()
 		// User implementation of forward euler
 		yf = eulerfwd(*y,h,2,dydt);
 		sprintf(msg,"Tfinal is %.3E\n",tf);
-		message(1,msg);
+		message(2,msg);
 	
 		// Using gsl library 
 		grvy_timer_begin("GSL solver");
@@ -50,7 +45,7 @@ int testode()
 		gsl_odeiv2_driver_apply_fixed_step(gsl_driver,&t0,h,nsteps,y);
 
 		sprintf(msg,"h is %f, nsteps is %ld, tfinal is %f",h,nsteps,t0);
-		message(1,msg);
+		message(2,msg);
 		grvy_timer_end("GSL solver");
 
 		// Print output

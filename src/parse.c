@@ -1,9 +1,6 @@
 // Function file for input parsing routines
 #include "parse.h"
 #include "functions.h"
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
 
 int input_parse()
 {
@@ -40,16 +37,16 @@ void set_def()
 	grvy_input_register_double("run/Final_time",10);
 
 	// Print the default values
-	message(0,"\nDefault input parameters are as following :");
-	message(0,"#### DEFAULT VALUES FOR INPUT PARAMETERS ####");
-	message(0,"  Verbosity          :   1 of 1");
-	message(0,"  System of eqns     :   'test'");
-	message(0,"  Time step          :   0.01");
-	message(0,"  Output frequency   :   1 (every time step)");
-	message(0,"  Verification mode  :   OFF");
-	message(0,"  Final time         :   10 sec");
-	message(0,"  Output file        :   dat/output.dat");
-	message(0,"############################################");
+	message(1,"\nDefault input parameters are as following :");
+	message(1,"#### DEFAULT VALUES FOR INPUT PARAMETERS ####");
+	message(1,"  Verbosity          :   1 of 1");
+	message(1,"  System of eqns     :   'test'");
+	message(1,"  Time step          :   0.01");
+	message(1,"  Output frequency   :   1 (every time step)");
+	message(1,"  Verification mode  :   OFF");
+	message(1,"  Final time         :   10 sec");
+	message(1,"  Output file        :   dat/output.dat");
+	message(1,"############################################");
 }
 
 void get_inp()
@@ -58,7 +55,7 @@ void get_inp()
 	// C1.Verbosity Level
     if(grvy_input_fread_int("code/verbosity",&verbosity)==0)
 		grvy_input_register_get_int("code/verbosity",&verbosity);
-	message(1,"Running in debug mode");
+	message(2,"Running in debug mode");
 	// C2.ODE System (main or test)
 	if(grvy_input_fread_char("code/odesys",&odesys)==0)
 		grvy_input_register_get_char("code/odesys",&odesys);

@@ -1,7 +1,5 @@
 #include"functions.h"
 #include"testode.h"
-#include<CUnit/CUnit.h>
-
 int main(){
 	char msg[100];// Maximum supported length of messages
 	
@@ -23,14 +21,14 @@ int main(){
 		return 0;
 	} else if(strcmp(odesys,"main")!=0)
 		{
-			message(0,"Error: odesys must be 'main' or 'test'");
+			message(1,"Error: odesys must be 'main' or 'test'");
 			return 2;
 		}
 	
 	/* Main CPEVF code */
 	message(0,"\nRunning calculations for Charged Particle in Vertical Electric Field");
 	sprintf(msg,"--> Time step is %.3e",tstep);
-	message(0,msg);
+	message(1,msg);
 	
 	double params[2];
 	params[0] = 5; params[1] = 5;
@@ -44,13 +42,13 @@ int main(){
 	double y[6] = {0,0,0,20,0,2};
 	sprintf(msg, "--> Initial conditions (x0,y0,z0) = (%.3e,%.3e,%.3e)",
 				y[0],y[1],y[2]);
-	message(0,msg);
+	message(1,msg);
 	sprintf(msg, "                       (u0,v0,w0) = (%.3e,%.3e,%.3e)",
 				y[3],y[4],y[5]);
-	message(0,msg); 
-	message(1,"\n#### Output of the program #### ");
+	message(1,msg); 
+	message(2,"\n#### Output of the program #### ");
 	sprintf(msg," %9s :  %11s   %11s   %11s","time","x(m)","y(m)","z(m)"); 
-	message(1,msg);
+	message(2,msg);
 	// Initial outfile header
 	print_header();
 	// Run the driver and output to outfile
@@ -62,7 +60,7 @@ int main(){
 				t0,y[0],y[1],y[2],y[3],y[4],y[5]);
 			sprintf(msg," %9.3e : %11.4E   %11.4E   %11.4E",
 				t0,y[0],y[1],y[2]);
-			message(1,msg);
+			message(2,msg);
 		}
 		if(ti==0)
 			grvy_timer_begin("GSL integrator");
@@ -75,8 +73,8 @@ int main(){
 	grvy_timer_finalize();
 	message(0,"Execution complete..");
 	sprintf(msg,"Output written to %s",outfilename);
-	message(0,msg);
-	message(0,"\n#### GRVY TIMING REPORT ####");
+	message(1,msg);
+	message(1,"\n#### GRVY TIMING REPORT ####");
 	grvy_timer_summarize();
 	return 0;
 }

@@ -1,10 +1,8 @@
 #include "parse.h"
 #include "functions.h"
-#include<stdio.h>
 #include<assert.h>
 #include<CUnit/CUnit.h>
 #include<CUnit/Basic.h>
-#include<gsl/gsl_rng.h>
 
 void test_temp(void);
 void test_parse();

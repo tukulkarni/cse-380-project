@@ -1,8 +1,9 @@
 //Libraries
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #include<math.h>
-#include "parse.h"
+#include"parse.h"
 #include<gsl/gsl_odeiv2.h>
 #include<gsl/gsl_errno.h>
 
