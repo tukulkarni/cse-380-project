@@ -104,4 +104,5 @@ INDEX
 						and opens it.
 	3. errortest.plt : Compares the convergence rates of user's Euler 
 						forward solver with GSL's Euler backward solver.
-						input path must be set in datafile and output is 						'testode.eps'
+						input path must be set in datafile and output is 	
+						'testode.eps'

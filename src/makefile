@@ -13,7 +13,7 @@ all : $(OBJ)
 	$(CC) -c $< $(DEBUG) $(INC) $(LIBS)
 
 coverage : $(SRC)
-	@gcc --coverage $^ $(DEBUG) $(INC) -Wl,-rpath,\
+	@$(CC) --coverage $^ $(DEBUG) $(INC) -Wl,-rpath,\
 	$(GRVY_LIB_DIR),-rpath,$(GSL_LIB_DIR) \
 	$(LDFLAGS) $(LIBS)
 

@@ -4,11 +4,11 @@ TESTSRC := testparse.c testsolver.c main.c
 TESTOBJ :=	$(patsubst %.c,%.o,$(TESTSRC))
 
 all : $(TESTOBJ) $(filter-out $(SRC_DIR)/main.c,$(SRC))
-	@gcc -o testsuite $^ $(INC) $(LIBS) $(LDFLAGS) $(LIBS) \
+	@$(CC) -o testsuite $^ $(INC) $(LIBS) $(LDFLAGS) $(LIBS) \
 	-Wl,-rpath,$(GRVY_LIB_DIR),-rpath,$(CUnit_LIB_DIR)
 
 %.o : %.c
-	gcc -c $< $(INC) $(LIBS) $(LDFLAGS) $(DEBUG)
+	$(CC) -c $< $(INC) $(LIBS) $(LDFLAGS) $(DEBUG)
 
 .PHONY : clean
 clean : 
